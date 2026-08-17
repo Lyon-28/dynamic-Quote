@@ -1,0 +1,345 @@
+{
+  "senin": {
+    "pagi": [
+    {
+      "text": [
+        "Senin datang lagi",
+        "membawa lembaran baru",
+        "jangan takut memulai",
+        "karena setiap awal",
+        "selalu terasa berat",
+        "tapi di situlah",
+        "kekuatan sebenarnya diuji",
+        "bangkit bukan soal",
+        "seberapa keras jatuhmu",
+        "tapi seberapa cepat kau berdiri"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Semangat pagi ini",
+        "adalah bekal sepekan penuh",
+        "jangan biarkan malas",
+        "merampas harimu"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Di tengah lelahnya siang",
+        "ingat kenapa kau memulai"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, syukuri langkah kecil yang sudah kau tempuh"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Istirahatlah, esok masih ada perjuangan yang menanti"
+      ],
+      "author": "LyonPoy"
+    }]
+  },
+  "selasa": {
+    "pagi": [
+    {
+      "text": [
+        "Selasa membawa ritme baru",
+        "jangan terjebak rutinitas",
+        "yang membuatmu lupa tujuan",
+        "setiap hari adalah",
+        "kesempatan memperbaiki diri",
+        "bukan mengulang kesalahan",
+        "yang sama tanpa belajar",
+        "jadikan hari ini",
+        "lebih baik dari kemarin",
+        "sekecil apapun kemajuannya"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Konsistensi mengalahkan motivasi",
+        "yang datang dan pergi",
+        "teruslah bergerak walau pelan",
+        "asal jangan berhenti"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Jangan buru-buru menyerah",
+        "separuh perjalanan sudah kau lalui"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, evaluasi tanpa menghakimi diri sendiri"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Tidur yang cukup adalah investasi untuk esok yang lebih kuat"
+      ],
+      "author": "LyonPoy"
+    }]
+  },
+  "rabu": {
+    "pagi": [
+    {
+      "text": [
+        "Rabu, tengah pekan yang berat",
+        "tapi ini pertanda kau",
+        "sudah separuh jalan",
+        "menuju akhir pekan",
+        "jangan kendurkan langkah",
+        "justru di sinilah",
+        "banyak orang menyerah",
+        "jadilah yang bertahan",
+        "sampai garis akhir",
+        "karena hasil tak pernah mengkhianati usaha"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Lelah itu wajar",
+        "tapi jangan jadikan alasan",
+        "untuk berhenti total",
+        "istirahat sejenak, lalu lanjutkan"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Fokus pada satu langkah di depan",
+        "bukan seluruh jalan yang membentang"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, hargai dirimu yang sudah bertahan sejauh ini"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Malam ini, lepaskan beban yang tak perlu kau bawa tidur"
+      ],
+      "author": "LyonPoy"
+    }]
+  },
+  "kamis": {
+    "pagi": [
+    {
+      "text": [
+        "Kamis, semangat mulai teruji",
+        "tapi ingat tujuan awalmu",
+        "kenapa kau memulai semua ini",
+        "jangan biarkan lelah",
+        "menghapus alasan itu",
+        "setiap usaha kecil",
+        "sedang membangun sesuatu",
+        "yang besar di masa depan",
+        "percayalah pada proses",
+        "meski hasil belum terlihat"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Jangan bandingkan langkahmu",
+        "dengan langkah orang lain",
+        "setiap orang punya waktunya",
+        "fokus pada jalanmu sendiri"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Sedikit lagi, jangan berhenti",
+        "di tengah jalan yang sudah kau tempuh"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, ingat bahwa lelahmu punya arti"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Berdamailah dengan hari ini sebelum menyambut esok"
+      ],
+      "author": "LyonPoy"
+    }]
+  },
+  "jum'at": {
+    "pagi": [
+    {
+      "text": [
+        "Jumat membawa harapan",
+        "akhir pekan sudah dekat",
+        "tapi jangan kendurkan usaha",
+        "justru tuntaskan dengan baik",
+        "apa yang sudah kau mulai",
+        "berkah datang bagi",
+        "mereka yang konsisten",
+        "sampai akhir perjalanan",
+        "jadikan hari ini",
+        "penutup pekan yang membanggakan"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Syukuri setiap proses",
+        "bukan hanya hasil akhir",
+        "karena di situlah",
+        "kau benar-benar bertumbuh"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Selesaikan tugasmu dengan hati",
+        "bukan sekadar menggugurkan kewajiban"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, rayakan kecil kemenangan yang sering kau lupakan"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Malam Jumat ini, tenangkan hati dan syukuri yang ada"
+      ],
+      "author": "LyonPoy"
+    }]
+  },
+  "sabtu": {
+    "pagi": [
+    {
+      "text": [
+        "Sabtu, waktu untuk bernafas",
+        "tapi bukan berarti berhenti",
+        "gunakan waktu luang",
+        "untuk mengisi ulang energi",
+        "bukan sekadar rebahan",
+        "tanpa arah dan tujuan",
+        "rencanakan langkah selanjutnya",
+        "sambil menikmati istirahat",
+        "keseimbangan adalah kunci",
+        "dari perjalanan panjang"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Nikmati waktu bersama orang tersayang",
+        "karena itu juga bagian",
+        "dari hidup yang bermakna",
+        "bukan hanya soal pencapaian"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Istirahat bukan tanda lemah",
+        "tapi bagian dari strategi bertahan"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, nikmati waktu tanpa rasa bersalah"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Malam Sabtu ini, biarkan dirimu benar-benar rileks"
+      ],
+      "author": "LyonPoy"
+    }]
+  },
+  "minggu": {
+    "pagi": [
+    {
+      "text": [
+        "Minggu pagi, waktu refleksi",
+        "lihat kembali perjalanan sepekan",
+        "apa yang sudah kau capai",
+        "dan apa yang perlu diperbaiki",
+        "jangan terlalu keras",
+        "pada diri sendiri",
+        "karena kau sudah",
+        "berusaha semaksimal mungkin",
+        "siapkan diri dan hati",
+        "untuk pekan yang baru"
+      ],
+      "author": "LyonPoy"
+    },
+    {
+      "text": [
+        "Rencanakan pekan depan",
+        "dengan niat yang lebih kuat",
+        "belajar dari kesalahan lalu",
+        "tanpa terus menyesalinya"
+      ],
+      "author": "LyonPoy"
+    }],
+    "siang": [
+    {
+      "text": [
+        "Gunakan hari ini untuk mengisi ulang",
+        "jiwa dan pikiranmu yang lelah"
+      ],
+      "author": "LyonPoy"
+    }],
+    "sore": [
+    {
+      "text": [
+        "Sore ini, siapkan hati menyambut pekan yang baru"
+      ],
+      "author": "LyonPoy"
+    }],
+    "malam": [
+    {
+      "text": [
+        "Malam ini, tidurlah dengan tenang, esok awal baru menanti"
+      ],
+      "author": "LyonPoy"
+    }]
+  }
+}
