@@ -1,0 +1,14 @@
+[build]
+publish = "."
+functions = "netlify/functions"
+
+[[redirects]]
+from = "/api/quote"
+to = "/.netlify/functions/quote"
+status = 200
+force = true
+
+[[headers]]
+for = "/api/quote"
+[headers.values]
+Access-Control-Allow-Origin = "*"
