@@ -1,0 +1,20 @@
+{
+  "name": "dynamic-quote",
+  "version": "1.0.0",
+  "description": "Dynamic quote generator by day & time (WIB) — JSON, SVG, PNG, JPEG, PDF, HTML, Markdown.",
+  "main": "script.js",
+  "license": "MIT",
+  "author": "LyonPoy",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node local-server.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.4",
+    "pdfkit": "^0.15.0",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
