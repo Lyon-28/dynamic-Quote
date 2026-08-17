@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "functions": {
+    "api/quote.js": {
+      "memory": 1024,
+      "maxDuration": 15
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/quote",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}
