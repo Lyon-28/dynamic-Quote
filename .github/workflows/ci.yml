@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Sanity check — load quotes.json
+        run: node -e "const q = require('./data/quotes.json'); if (!q.senin || !q.senin.pagi) throw new Error('quotes.json invalid'); console.log('quotes.json OK');"
+
+      - name: Sanity check — renderQuote (json/text/markdown/html/svg)
+        run: |
+          node -e "
+          const DynamicQuote = require('./script.js');
+          (async () => {
+            const formats = ['json','text','markdown','html','svg'];
+            for (const format of formats) {
+              const result = await DynamicQuote.renderQuote({ format });
+              if (!result || !result.body) throw new Error('Format gagal: ' + format);
+              console.log('OK:', format);
+            }
+          })().catch(err => { console.error(err); process.exit(1); });
+          "
