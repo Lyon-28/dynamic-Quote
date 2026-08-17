@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dynamic Quote — lyon-28</title>
+  <meta name="description" content="Dynamic quote generator berbasis hari & waktu WIB. Support JSON, SVG, PNG, JPEG, PDF, HTML, Markdown.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-0: #0b0d14;
+      --bg-1: #12141f;
+      --bg-2: #181b29;
+      --card: #151827;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #e6e7ee;
+      --text-dim: #8b8fa3;
+      --accent: #7c6cff;
+      --accent-2: #fe428e;
+      --accent-3: #38bdf8;
+      --success: #4ade80;
+      --danger: #f87171;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+      --mono: 'Fira Code', monospace;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(124, 108, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(254, 66, 142, 0.12), transparent 40%),
+        var(--bg-0);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+    
+    a {
+      color: var(--accent-3);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+    
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 13, 20, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .brand i {
+      color: var(--accent);
+      -webkit-text-fill-color: var(--accent);
+    }
+    
+    .nav-links {
+      display: none;
+      gap: 22px;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+    }
+    
+    .nav-links a {
+      color: var(--text-dim);
+    }
+    
+    .nav-links a:hover {
+      color: var(--text);
+    }
+    
+    @media(min-width:720px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+    
+    .gh-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      border: 1px solid var(--card-border);
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+    
+    .gh-link:hover {
+      color: var(--text);
+      text-decoration: none;
+      border-color: var(--accent);
+    }
+    
+    /* HERO */
+    .hero {
+      padding: 56px 0 30px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, #fff, var(--accent-3) 60%, var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+    
+    .hero p {
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 24px;
+      font-size: 0.98rem;
+    }
+    
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    
+    .badge {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      padding: 5px 11px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    /* SECTION */
+    section {
+      padding: 34px 0;
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    
+    .section-title i {
+      color: var(--accent);
+    }
+    
+    .section-sub {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-top: -10px;
+      margin-bottom: 18px;
+    }
+    
+    /* CARD */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    
+    /* PREVIEW */
+    .preview-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .quote-card {
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      background: linear-gradient(145deg, #141321, #1c1a2e);
+      border: 1px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s ease;
+    }
+    
+    .quote-card .mark {
+      position: absolute;
+      top: 6px;
+      left: 16px;
+      font-size: 3.4rem;
+      font-family: Georgia, serif;
+      opacity: 0.15;
+      color: var(--accent);
+    }
+    
+    .quote-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      max-width: 480px;
+    }
+    
+    .quote-author {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    
+    .quote-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+    
+    .quote-meta span {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+    }
+    
+    /* CONTROLS */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    
+    @media(min-width:600px) {
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .field label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    
+    select,
+    input[type="text"],
+    input[type="color"] {
+      background: var(--bg-1);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      outline: none;
+      width: 100%;
+    }
+    
+    select:focus,
+    input:focus {
+      border-color: var(--accent);
+    }
+    
+    input[type="color"] {
+      padding: 4px;
+      height: 42px;
+      cursor: pointer;
+    }
+    
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--card-border);
+      background: var(--bg-1);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--bg-2);
+    }
+    
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border: none;
+      color: #fff;
+    }
+    
+    .btn.primary:hover {
+      filter: brightness(1.08);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    /* FORMAT TABS */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    
+    .tab {
+      font-size: 0.78rem;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      color: var(--text-dim);
+      cursor: pointer;
+      background: var(--bg-1);
+    }
+    
+    .tab.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    
+    /* CODE BLOCK */
+    .code-block {
+      position: relative;
+      background: #0d0e16;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: #c9cbe0;
+      white-space: pre;
+    }
+    
+    .code-block .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--bg-2);
+      border: 1px solid var(--card-border);
+      color: var(--text-dim);
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+    
+    .code-block .copy-btn:hover {
+      color: var(--text);
+    }
+    
+    /* FORMAT GRID DEMO */
+    .format-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    
+    @media(min-width:640px) {
+      .format-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .format-item {
+      background: var(--bg-1);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+    
+    .format-item h4 {
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    
+    .format-item h4 i {
+      color: var(--accent-3);
+    }
+    
+    .format-item p {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+    
+    /* FOOTER */
+    footer {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      padding: 40px 0 10px;
+    }
+    
+    footer i {
+      color: var(--accent-2);
+    }
+    
+    /* TOAST / CUSTOM ALERT */
+    #toast-root {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: min(92vw, 380px);
+    }
+    
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-size: 0.85rem;
+      animation: toast-in 0.28s ease;
+    }
+    
+    .toast.success {
+      border-left-color: var(--success);
+    }
+    
+    .toast.error {
+      border-left-color: var(--danger);
+    }
+    
+    .toast i {
+      font-size: 1rem;
+    }
+    
+    .toast.success i {
+      color: var(--success);
+    }
+    
+    .toast.error i {
+      color: var(--danger);
+    }
+    
+    .toast.info i {
+      color: var(--accent-3);
+    }
+    
+    .toast .msg {
+      flex: 1;
+      color: var(--text);
+    }
+    
+    .toast .close-x {
+      color: var(--text-dim);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes toast-out {
+      to {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+    
+    /* LOADING SKELETON */
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.09) 37%, rgba(255, 255, 255, 0.04) 63%);
+      background-size: 400% 100%;
+      animation: skeleton-loading 1.4s ease infinite;
+      border-radius: 8px;
+      height: 14px;
+      margin: 6px 0;
+    }
+    
+    @keyframes skeleton-loading {
+      0% {
+        background-position: 100% 50%;
+      }
+      
+      100% {
+        background-position: 0 50%;
+      }
+    }
+    
+    ::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #2a2d3c;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <nav>
+    <div class="container">
+      <div class="brand"><i class="fa-solid fa-quote-left"></i> dynamic-quote</div>
+      <div class="nav-links">
+        <a href="#preview">Preview</a>
+        <a href="#formats">Format</a>
+        <a href="#embed">Embed</a>
+        <a href="#docs">Docs</a>
+      </div>
+      <a class="gh-link" href="https://github.com/lyon-28/dynamic-quote" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+    </div>
+  </nav>
+  
+  <header class="hero container">
+    <h1>Dynamic Quote by Day &amp; Time</h1>
+    <p>Quote otomatis berganti sesuai hari dan periode waktu (WIB). Kustomisasi warna, tema, dan format — pakai langsung via URL, tanpa server tambahan.</p>
+    <div class="hero-badges">
+      <span class="badge"><i class="fa-solid fa-code"></i> JSON</span>
+      <span class="badge"><i class="fa-solid fa-image"></i> SVG / PNG / JPEG</span>
+      <span class="badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+      <span class="badge"><i class="fa-brands fa-markdown"></i> Markdown</span>
+      <span class="badge"><i class="fa-solid fa-code"></i> HTML</span>
+    </div>
+  </header>
+  
+  <main class="container">
+    
+    <!-- PREVIEW -->
+    <section id="preview">
+      <div class="section-title"><i class="fa-solid fa-eye"></i> Live Preview</div>
+      <p class="section-sub">Quote diambil langsung via <code>fetch()</code> dari <code>/api/quote</code>.</p>
+      
+      <div class="card preview-wrap">
+        <div class="quote-card" id="quoteCard">
+          <span class="mark">&ldquo;</span>
+          <div id="quoteText" class="quote-text">
+            <div class="skeleton" style="width:80%"></div>
+            <div class="skeleton" style="width:60%"></div>
+          </div>
+          <div id="quoteAuthor" class="quote-author">&nbsp;</div>
+          <div id="quoteMeta" class="quote-meta"></div>
+        </div>
+        
+        <div class="controls">
+          <div class="field">
+            <label for="selDay"><i class="fa-solid fa-calendar-day"></i> Hari</label>
+            <select id="selDay">
+              <option value="">Auto (hari ini)</option>
+              <option value="senin">Senin</option>
+              <option value="selasa">Selasa</option>
+              <option value="rabu">Rabu</option>
+              <option value="kamis">Kamis</option>
+              <option value="jum'at">Jumat</option>
+              <option value="sabtu">Sabtu</option>
+              <option value="minggu">Minggu</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="selPeriod"><i class="fa-solid fa-clock"></i> Periode</label>
+            <select id="selPeriod">
+              <option value="">Auto (waktu sekarang)</option>
+              <option value="pagi">Pagi</option>
+              <option value="siang">Siang</option>
+              <option value="sore">Sore</option>
+              <option value="malam">Malam</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="selTheme"><i class="fa-solid fa-palette"></i> Theme</label>
+            <select id="selTheme">
+              <option value="radical">Radical</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+              <option value="dracula">Dracula</option>
+              <option value="monokai">Monokai</option>
+              <option value="gruvbox">Gruvbox</option>
+              <option value="tokyonight">Tokyo Night</option>
+              <option value="sunset">Sunset</option>
+              <option value="ocean">Ocean</option>
+              <option value="forest">Forest</option>
+              <option value="transparent">Transparent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="selFormat"><i class="fa-solid fa-file"></i> Format</label>
+            <select id="selFormat">
+              <option value="json">JSON</option>
+              <option value="text">Text</option>
+              <option value="markdown">Markdown</option>
+              <option value="html">HTML</option>
+              <option value="svg">SVG</option>
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="colText"><i class="fa-solid fa-font"></i> Warna Teks</label>
+            <input type="color" id="colText" value="#e6e7ee">
+          </div>
+          <div class="field">
+            <label for="colAuthor"><i class="fa-solid fa-signature"></i> Warna Author</label>
+            <input type="color" id="colAuthor" value="#a9fef7">
+          </div>
+        </div>
+        
+        <div class="btn-row">
+          <button class="btn primary" id="btnRefresh"><i class="fa-solid fa-rotate"></i> Ambil Quote Baru</button>
+          <button class="btn" id="btnCopy"><i class="fa-regular fa-copy"></i> Copy Text</button>
+          <button class="btn" id="btnOpenImg"><i class="fa-regular fa-image"></i> Buka Sebagai Gambar</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FORMATS -->
+    <section id="formats">
+      <div class="section-title"><i class="fa-solid fa-layer-group"></i> Format yang Didukung</div>
+      <div class="format-grid">
+        <div class="format-item">
+          <h4><i class="fa-solid fa-code"></i> JSON</h4>
+          <p>Response terstruktur, cocok untuk konsumsi API / integrasi app lain.</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-solid fa-align-left"></i> Text / TXT</h4>
+          <p>Plain text, langsung pakai untuk CLI, bot, atau notifikasi.</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-brands fa-markdown"></i> Markdown</h4>
+          <p>Blockquote siap tempel ke README atau catatan.</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-solid fa-window-maximize"></i> HTML</h4>
+          <p>Fragment siap sisip ke halaman web (widget).</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-regular fa-image"></i> SVG</h4>
+          <p>Vector, ringan, ideal untuk embed di README GitHub.</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-solid fa-image"></i> PNG / JPEG</h4>
+          <p>Raster hasil screenshot hybrid (5 provider + fallback lokal).</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-solid fa-file-pdf"></i> PDF</h4>
+          <p>Dokumen cetak-siap, dibuat via PDFKit.</p>
+        </div>
+        <div class="format-item">
+          <h4><i class="fa-regular fa-clipboard"></i> Copy to Clipboard</h4>
+          <p>Fungsi browser <code>DynamicQuote.browser.copyToClipboard()</code>.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- EMBED GENERATOR -->
+    <section id="embed">
+      <div class="section-title"><i class="fa-solid fa-code-branch"></i> Embed Generator</div>
+      <p class="section-sub">Pilih format & tema di atas, lalu salin kode di bawah ini.</p>
+      
+      <div class="card">
+        <div class="tabs">
+          <div class="tab active" data-tab="markdown">Markdown</div>
+          <div class="tab" data-tab="html">HTML img</div>
+          <div class="tab" data-tab="fetch">Fetch (JS)</div>
+          <div class="tab" data-tab="curl">cURL</div>
+        </div>
+        <div class="code-block" id="embedCode">
+          <button class="copy-btn" id="btnCopyEmbed"><i class="fa-regular fa-copy"></i> Copy</button>
+          <code id="embedCodeText">Memuat...</code>
+        </div>
+      </div>
+    </section>
+    
+    <!-- DOCS SHORTCUT -->
+    <section id="docs">
+      <div class="section-title"><i class="fa-solid fa-book"></i> Dokumentasi</div>
+      <div class="card">
+        <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:14px;">
+          Dokumentasi lengkap (semua parameter, contoh Node.js, browser, dan daftar theme) ada di README.
+        </p>
+        <a class="btn primary" href="./README.md" target="_blank" rel="noopener">
+          <i class="fa-solid fa-book-open"></i> Buka README.md
+        </a>
+      </div>
+    </section>
+    
+  </main>
+  
+  <footer>
+    Dibuat dengan <i class="fa-solid fa-heart"></i> oleh <strong>LyonPoy</strong> — lyon-28/dynamic-quote
+  </footer>
+  
+  <div id="toast-root"></div>
+  
+  <script src="/script.js"></script>
+  <script>
+    (function() {
+      "use strict";
+      
+      /* ---------- CUSTOM TOAST / ALERT ---------- */
+      const toastRoot = document.getElementById("toast-root");
+      const ICONS = {
+        success: "fa-solid fa-circle-check",
+        error: "fa-solid fa-circle-xmark",
+        info: "fa-solid fa-circle-info",
+      };
+      
+      function showToast(message, type = "info", timeout = 3200) {
+        const el = document.createElement("div");
+        el.className = `toast ${type}`;
+        el.innerHTML = `
+      <i class="${ICONS[type] || ICONS.info}"></i>
+      <span class="msg">${message}</span>
+      <button class="close-x" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    `;
+        el.querySelector(".close-x").onclick = () => removeToast(el);
+        toastRoot.appendChild(el);
+        const timer = setTimeout(() => removeToast(el), timeout);
+        el._timer = timer;
+      }
+      
+      function removeToast(el) {
+        if (!el || !el.parentNode) return;
+        clearTimeout(el._timer);
+        el.style.animation = "toast-out 0.25s ease forwards";
+        setTimeout(() => el.remove(), 240);
+      }
+      
+      /* ---------- STATE ---------- */
+      const els = {
+        day: document.getElementById("selDay"),
+        period: document.getElementById("selPeriod"),
+        theme: document.getElementById("selTheme"),
+        format: document.getElementById("selFormat"),
+        colText: document.getElementById("colText"),
+        colAuthor: document.getElementById("colAuthor"),
+        quoteCard: document.getElementById("quoteCard"),
+        quoteText: document.getElementById("quoteText"),
+        quoteAuthor: document.getElementById("quoteAuthor"),
+        quoteMeta: document.getElementById("quoteMeta"),
+        btnRefresh: document.getElementById("btnRefresh"),
+        btnCopy: document.getElementById("btnCopy"),
+        btnOpenImg: document.getElementById("btnOpenImg"),
+        embedCodeText: document.getElementById("embedCodeText"),
+        btnCopyEmbed: document.getElementById("btnCopyEmbed"),
+        tabs: document.querySelectorAll(".tab"),
+      };
+      
+      const THEME_COLORS = {
+        radical: { bg: "#141321", text: "#fe428e", author: "#a9fef7" },
+        dark: { bg: "#0d1117", text: "#c9d1d9", author: "#58a6ff" },
+        light: { bg: "#ffffff", text: "#24292e", author: "#0366d6" },
+        dracula: { bg: "#282a36", text: "#f8f8f2", author: "#bd93f9" },
+        monokai: { bg: "#272822", text: "#f8f8f2", author: "#a6e22e" },
+        gruvbox: { bg: "#282828", text: "#ebdbb2", author: "#fabd2f" },
+        tokyonight: { bg: "#1a1b27", text: "#a9b1d6", author: "#7aa2f7" },
+        sunset: { bg: "#2d1b2e", text: "#ffb677", author: "#ff6f91" },
+        ocean: { bg: "#0f2027", text: "#c9f2ff", author: "#38bdf8" },
+        forest: { bg: "#1b2e1f", text: "#c8e6c9", author: "#81c784" },
+        transparent: { bg: "transparent", text: "#333333", author: "#666666" },
+      };
+      
+      let activeEmbedTab = "markdown";
+      
+      function buildQuery() {
+        const q = {};
+        if (els.day.value) q.day = els.day.value;
+        if (els.period.value) q.period = els.period.value;
+        q.theme = els.theme.value;
+        q.colorText = els.colText.value.replace("#", "");
+        q.colorAuthor = els.colAuthor.value.replace("#", "");
+        q.format = els.format.value;
+        return q;
+      }
+      
+      function apiUrl(query) {
+        const qs = new URLSearchParams(query).toString();
+        return `/api/quote?${qs}`;
+      }
+      
+      async function fetchAndRenderQuote() {
+        els.quoteText.innerHTML = `<div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:60%"></div>`;
+        els.quoteAuthor.textContent = "";
+        try {
+          const q = buildQuery();
+          q.format = "json"; // preview selalu ambil json biar bisa render custom
+          const res = await fetch(apiUrl(q));
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          
+          const theme = THEME_COLORS[els.theme.value] || THEME_COLORS.radical;
+          els.quoteCard.style.background = els.theme.value === "transparent" ?
+            "transparent" :
+            `linear-gradient(145deg, ${theme.bg}, ${theme.bg}dd)`;
+          
+          els.quoteText.innerHTML = data.text.map(l => `<div>${escapeHTML(l)}</div>`).join("");
+          els.quoteText.style.color = els.colText.value;
+          els.quoteAuthor.textContent = `— ${data.author}`;
+          els.quoteAuthor.style.color = els.colAuthor.value;
+          
+          els.quoteMeta.innerHTML = `
+        <span><i class="fa-solid fa-calendar-day"></i> ${data.day}</span>
+        <span><i class="fa-solid fa-clock"></i> ${data.period}</span>
+      `;
+          
+          window._lastQuote = data;
+          updateEmbedCode();
+        } catch (err) {
+          showToast(`Gagal memuat quote: ${err.message}`, "error");
+          els.quoteText.textContent = "Gagal memuat quote.";
+        }
+      }
+      
+      function escapeHTML(str) {
+        return String(str)
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+      
+      function updateEmbedCode() {
+        const q = buildQuery();
+        const origin = window.location.origin;
+        let code = "";
+        
+        if (activeEmbedTab === "markdown") {
+          const svgQ = { ...q, format: "svg" };
+          code = `
+
+![quote](${origin}${apiUrl(svgQ)
+
+})`;
+        } else if (activeEmbedTab === "html") {
+          const svgQ = { ...q, format: "svg" };
+          code = `<p align="center">\n  <img src="${origin}${apiUrl(svgQ)}" alt="quote">\n</p>`;
+        } else if (activeEmbedTab === "fetch") {
+          code =
+            `const res = await fetch("${origin}${apiUrl({ ...q, format: "json" })}");
+const quote = await res.json();
+console.log(quote.text.join("\\n"), "-", quote.author);`;
+        } else if (activeEmbedTab === "curl") {
+          code = `curl "${origin}${apiUrl(q)}"`;
+        }
+        
+        els.embedCodeText.textContent = code;
+      }
+      
+      /* ---------- EVENTS ---------- */
+      [els.day, els.period, els.theme, els.format, els.colText, els.colAuthor].forEach(el => {
+        el.addEventListener("change", () => {
+          fetchAndRenderQuote();
+        });
+      });
+      
+      els.btnRefresh.addEventListener("click", () => {
+        fetchAndRenderQuote();
+        showToast("Quote diperbarui", "success", 1800);
+      });
+      
+      els.btnCopy.addEventListener("click", async () => {
+        if (!window._lastQuote) return;
+        const text = `${window._lastQuote.text.join("\n")}\n\n- ${window._lastQuote.author}`;
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast("Quote disalin ke clipboard", "success", 2000);
+        } catch (e) {
+          showToast("Gagal menyalin ke clipboard", "error");
+        }
+      });
+      
+      els.btnOpenImg.addEventListener("click", () => {
+        const q = buildQuery();
+        q.format = q.format === "pdf" || q.format === "json" || q.format === "text" || q.format === "markdown" || q.format === "html" ?
+          "svg" : q.format;
+        window.open(apiUrl(q), "_blank");
+      });
+      
+      els.tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          els.tabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          activeEmbedTab = tab.dataset.tab;
+          updateEmbedCode();
+        });
+      });
+      
+      els.btnCopyEmbed.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(els.embedCodeText.textContent);
+          showToast("Kode embed disalin", "success", 2000);
+        } catch (e) {
+          showToast("Gagal menyalin kode", "error");
+        }
+      });
+      
+      /* ---------- INIT ---------- */
+      fetchAndRenderQuote();
+    })();
+  </script>
+</body>
+
+</html>
